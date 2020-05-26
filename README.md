@@ -40,6 +40,7 @@ HOTP : HOTP defines an algorithm to create a one time password from a secret key
 The disadvanatage of this is we have keep the counter and this otp will be valid until it will be used to over come this they had come up with the TOTP
 
 
+
 Keeping track of the counter
 A TOTP uses the HOTP algorithm to obtain the one time password. The only difference is that it uses “Time” in the place of “counter,” 
 That means that instead of initializing the counter and keeping track of it, we can use time as a counter in the HOTP algorithm to obtain the OTP. As a server and phone both have access to time, neither of them has to keep track of the counter.
