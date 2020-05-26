@@ -34,6 +34,7 @@ HOTP : HOTP defines an algorithm to create a one time password from a secret key
 1.	Obtain HMAC hash (using SHA-1 hashing algorithm) by secretKey and counter :  hmacHash = HMAC-SHA-1(secretKey, counter);
 
 2.	 In this code, the output would be a 20 byte long string. That long string is not suitable as a one time password. So we need a way to truncate that string.
+
          a.	string.offset = hmacHash[19] & 0xf;
          
          b.	truncatedHash = (hmacHash[offset++] & 0x7f) << 24 | (hmacHash[offset++] & 0xff) << 16 | (hmacHash[offset++] & 0xff) << 8 | (hmacHashh[offset++] & 0xff) [Here we are taking we concatenate the bytes from hmacHash[offset] to hmacHash[offset+3]
