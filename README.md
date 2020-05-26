@@ -41,7 +41,8 @@ The disadvanatage of this is we have keep the counter and this otp will be valid
 
 
 
-Keeping track of the counter
+Keeping track of the counter :
+
 A TOTP uses the HOTP algorithm to obtain the one time password. The only difference is that it uses “Time” in the place of “counter,” 
 That means that instead of initializing the counter and keeping track of it, we can use time as a counter in the HOTP algorithm to obtain the OTP. As a server and phone both have access to time, neither of them has to keep track of the counter.
 counter = currentUnixTime / 30 – every thirty seconds this will return new values. Here we always take a lowerbound
