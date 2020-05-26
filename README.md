@@ -14,6 +14,7 @@ The SMS-based easy, but it has its own problems, like waiting for the SMS on eve
  There are various methods of implementing 2-factor authentication, and TOTP (the Time-based One-Time Password algorithm) authentication is one of them.
 Ex : google, facebook and git hub etc
 
+
 How the TOTP-based method works.
 	To implement two step verification our password should be changing on time
 	Steps to implement
@@ -22,16 +23,20 @@ How the TOTP-based method works.
 3. Phone application initializes a counter.
 4. Phone application generate a one time password using that secret key and counter.
 5. Phone application changes the counter after a certain interval and regenerates the one time password making it dynamic.
+
+
 HOW TOtp is implemented 
 1.	Generate password using secret key and counter
 2.	Keeping track of the counter
+
 Generate password using secret key and counter:
 HOTP : HOTP defines an algorithm to create a one time password from a secret key and a counter.
 1.	Obtain HMAC hash (using SHA-1 hashing algorithm) by secretKey and counter :  hmacHash = HMAC-SHA-1(secretKey, counter);
+
 2.	 In this code, the output would be a 20 byte long string. That long string is not suitable as a one time password. So we need a way to truncate that string.
-a.	string.offset = hmacHash[19] & 0xf;
-b.	truncatedHash = (hmacHash[offset++] & 0x7f) << 24 | (hmacHash[offset++] & 0xff) << 16 | (hmacHash[offset++] & 0xff) << 8 | (hmacHashh[offset++] & 0xff) [Here we are taking we concatenate the bytes from hmacHash[offset] to hmacHash[offset+3]
-c.	finalOTP = (truncatedHash % (10 ^ numberOfDigitsRequiredInOTP));
+         a.	string.offset = hmacHash[19] & 0xf;
+         b.	truncatedHash = (hmacHash[offset++] & 0x7f) << 24 | (hmacHash[offset++] & 0xff) << 16 | (hmacHash[offset++] & 0xff) << 8 | (hmacHashh[offset++] & 0xff) [Here we are taking we concatenate the bytes from hmacHash[offset] to hmacHash[offset+3]
+         c.	finalOTP = (truncatedHash % (10 ^ numberOfDigitsRequiredInOTP));
 The disadvanatage of this is we have keep the counter and this otp will be valid until it will be used to over come this they had come up with the TOTP
 
 
